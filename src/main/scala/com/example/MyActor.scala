@@ -1,5 +1,14 @@
 package com.example
 
-class MyActor {
+import akka.actor.Actor
+
+class MyActor extends Actor {
+  def receive = {
+    case s: String => {
+      sender ! s
+    }
+    case _ => {
+    }
+  }
 
 }
