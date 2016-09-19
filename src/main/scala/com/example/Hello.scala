@@ -50,5 +50,7 @@ object Hello {
         println("finalize")
       }
     }
+
+    system.terminate()
   }
 }
