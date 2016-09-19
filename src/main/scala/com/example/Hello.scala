@@ -15,41 +15,50 @@ object Hello {
     val system =ActorSystem("mySystem")
     implicit val timeout = Timeout(5 seconds)
 
+    // アクターの生成
     val props = Props[MyActor]
     val actor = system.actorOf(props, name = "myActor")
 
+    // Futureを生成(ask)
     val future: Future[Any] = actor ? "hi"
 
+    // コールバックの書き方(その1)
+    // 成功時
     future onSuccess {
       case s: String => {
-        println(s)
+        println(s) // hi
       }
       case _ => {
       }
     }
+    // 失敗時
     future onFailure {
       case e: Exception => {
       }
     }
 
+    // コールバックの書き方(その2)
+    // 完了時
     future onComplete {
       case Success(result) => {
-        println(result)
+        println(result) // hi
       }
       case Failure(failure ) => {
       }
     }
 
+    // コールバックの書き方(その3)
+    // 連鎖
     future andThen {
       case Success(result) => {
-        println("success")
+        println("success") // success 1. これが発動してから
       }
       case Failure(failure) => {
         println("failure")
       }
     } andThen {
       case _ => {
-        println("finalize")
+        println("finalize") // finalize 2. これが発動
       }
     }
 
