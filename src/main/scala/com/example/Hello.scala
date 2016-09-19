@@ -37,5 +37,18 @@ object Hello {
       case Failure(failure ) => {
       }
     }
+
+    future andThen {
+      case Success(result) => {
+        println("success")
+      }
+      case Failure(failure) => {
+        println("failure")
+      }
+    } andThen {
+      case _ => {
+        println("finalize")
+      }
+    }
   }
 }
