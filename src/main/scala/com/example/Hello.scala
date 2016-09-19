@@ -2,7 +2,9 @@ package com.example
 
 import akka.actor.{ActorSystem, Props}
 import akka.util.Timeout
+import akka.pattern.ask
 
+import scala.concurrent.Future
 import scala.concurrent.duration._
 
 object Hello {
@@ -12,5 +14,7 @@ object Hello {
 
     val props = Props[MyActor]
     val actor = system.actorOf(props, name = "myActor")
+
+    val future: Future[Any] = actor ? "hi"
   }
 }
