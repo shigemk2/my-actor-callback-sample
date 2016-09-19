@@ -6,6 +6,7 @@ import akka.pattern.ask
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
+import scala.util.{Failure, Success}
 
 object Hello {
   def main(args: Array[String]): Unit = {
@@ -26,6 +27,14 @@ object Hello {
     }
     future onFailure {
       case e: Exception => {
+      }
+    }
+
+    future onComplete {
+      case Success(result) => {
+        println(result)
+      }
+      case Failure(failure ) => {
       }
     }
   }
