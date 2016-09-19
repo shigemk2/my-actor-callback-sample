@@ -16,5 +16,17 @@ object Hello {
     val actor = system.actorOf(props, name = "myActor")
 
     val future: Future[Any] = actor ? "hi"
+
+    future onSuccess {
+      case s: String => {
+        println(s)
+      }
+      case _ => {
+      }
+    }
+    future onFailure {
+      case e: Exception => {
+      }
+    }
   }
 }
