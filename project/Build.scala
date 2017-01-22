@@ -15,7 +15,7 @@ object MyActorCallbackSampleProject extends Build {
     name := """my-actor-callback-sample""",
     libraryDependencies := Seq(
       "com.typesafe.akka" %% "akka-actor" % "2.4.10",
-      "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+      "org.scalatest" %% "scalatest" % "3.0.1" % "test"
     )
   )
 }
